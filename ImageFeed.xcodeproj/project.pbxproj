@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC564D02B964D9E00107D99 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC564CF2B964D9E00107D99 /* ProfileViewController.swift */; };
 		0AE4D6C92B8F62FF00D4DDCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D6C82B8F62FF00D4DDCE /* AppDelegate.swift */; };
 		0AE4D6CB2B8F62FF00D4DDCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D6CA2B8F62FF00D4DDCE /* SceneDelegate.swift */; };
 		0AE4D6CD2B8F62FF00D4DDCE /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D6CC2B8F62FF00D4DDCE /* ImagesListViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AC564CF2B964D9E00107D99 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0AE4D6C52B8F62FF00D4DDCE /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AE4D6C82B8F62FF00D4DDCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AE4D6CA2B8F62FF00D4DDCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		0AE4D6C72B8F62FF00D4DDCE /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0AC564CF2B964D9E00107D99 /* ProfileViewController.swift */,
 				0AE4D6FF2B92732200D4DDCE /* ImagesList */,
 				0AE4D6C82B8F62FF00D4DDCE /* AppDelegate.swift */,
 				0AE4D6CA2B8F62FF00D4DDCE /* SceneDelegate.swift */,
@@ -151,6 +154,7 @@
 			files = (
 				0AE4D6CD2B8F62FF00D4DDCE /* ImagesListViewController.swift in Sources */,
 				0AE4D7012B92733100D4DDCE /* ImagesListCell.swift in Sources */,
+				0AC564D02B964D9E00107D99 /* ProfileViewController.swift in Sources */,
 				0AE4D6C92B8F62FF00D4DDCE /* AppDelegate.swift in Sources */,
 				0AE4D6CB2B8F62FF00D4DDCE /* SceneDelegate.swift in Sources */,
 			);
