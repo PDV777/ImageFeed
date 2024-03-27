@@ -134,14 +134,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-fz-Iyf">
-                                <rect key="frame" x="76" y="362" width="240" height="128"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-fz-Iyf">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ES8-DK-Iqk">
-                                        <rect key="frame" x="-77" y="-362" width="393" height="852"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ES8-DK-Iqk">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="ES8-DK-Iqk" firstAttribute="width" secondItem="l1d-LE-1sx" secondAttribute="width" id="0aD-eG-Igv"/>
+                                    <constraint firstItem="ES8-DK-Iqk" firstAttribute="trailing" secondItem="FxM-Q5-QD1" secondAttribute="trailing" id="34U-sw-kJn"/>
+                                    <constraint firstItem="FxM-Q5-QD1" firstAttribute="leading" secondItem="ES8-DK-Iqk" secondAttribute="leading" id="NQk-Na-ddF"/>
+                                    <constraint firstItem="ES8-DK-Iqk" firstAttribute="bottom" secondItem="FxM-Q5-QD1" secondAttribute="bottom" id="dxw-W0-Oob"/>
+                                    <constraint firstItem="FxM-Q5-QD1" firstAttribute="top" secondItem="ES8-DK-Iqk" secondAttribute="top" id="gQl-bW-c8p"/>
+                                    <constraint firstItem="ES8-DK-Iqk" firstAttribute="height" secondItem="l1d-LE-1sx" secondAttribute="height" id="v6R-ra-pqQ"/>
+                                </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="FxM-Q5-QD1"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="l1d-LE-1sx"/>
                                 <connections>
