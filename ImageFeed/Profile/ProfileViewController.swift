@@ -67,5 +67,3 @@ final class ProfileViewController: UIViewController {
             logoutButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor)])
     }
 }
-
-//тест 2
