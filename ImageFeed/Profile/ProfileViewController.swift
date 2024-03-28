@@ -16,13 +16,13 @@ final class ProfileViewController: UIViewController {
     private let logoutButton = UIButton()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         transAdd()
         avatar()
         name()
         login()
         description()
         logout()
-        super.viewDidLoad()
     }
     
     private func transAdd(){
