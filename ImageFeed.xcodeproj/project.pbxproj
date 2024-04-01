@@ -16,6 +16,9 @@
 		0AE4D6D52B8F630000D4DDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AE4D6D32B8F630000D4DDCE /* LaunchScreen.storyboard */; };
 		0AE4D7012B92733100D4DDCE /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D7002B92733100D4DDCE /* ImagesListCell.swift */; };
 		0AEC71EC2B977CF5000B9509 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC71EB2B977CF5000B9509 /* SingleImageViewController.swift */; };
+		0AFCE7EE2BB6048300956B4D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFCE7ED2BB6048300956B4D /* Constants.swift */; };
+		0AFCE7F12BB6D96900956B4D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFCE7F02BB6D96900956B4D /* AuthViewController.swift */; };
+		0AFCE7F42BB81F9C00956B4D /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFCE7F32BB81F9C00956B4D /* WebViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		0AE4D6D62B8F630000D4DDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AE4D7002B92733100D4DDCE /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		0AEC71EB2B977CF5000B9509 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		0AFCE7ED2BB6048300956B4D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0AFCE7F02BB6D96900956B4D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		0AFCE7F32BB81F9C00956B4D /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +70,10 @@
 			children = (
 				0AEC71EA2B977CC2000B9509 /* Profile */,
 				0AE4D6FF2B92732200D4DDCE /* ImagesList */,
+				0AFCE7EF2BB6D6D400956B4D /* SingleImages */,
+				0AFCE7F22BB7056300956B4D /* Auth */,
+				0AFCE7ED2BB6048300956B4D /* Constants.swift */,
 				0AE4D6C82B8F62FF00D4DDCE /* AppDelegate.swift */,
-				0AEC71EB2B977CF5000B9509 /* SingleImageViewController.swift */,
 				0AE4D6CA2B8F62FF00D4DDCE /* SceneDelegate.swift */,
 				0AE4D6CE2B8F62FF00D4DDCE /* Main.storyboard */,
 				0AE4D6D12B8F630000D4DDCE /* Assets.xcassets */,
@@ -90,6 +98,23 @@
 				0AC564CF2B964D9E00107D99 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		0AFCE7EF2BB6D6D400956B4D /* SingleImages */ = {
+			isa = PBXGroup;
+			children = (
+				0AEC71EB2B977CF5000B9509 /* SingleImageViewController.swift */,
+			);
+			path = SingleImages;
+			sourceTree = "<group>";
+		};
+		0AFCE7F22BB7056300956B4D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0AFCE7F02BB6D96900956B4D /* AuthViewController.swift */,
+				0AFCE7F32BB81F9C00956B4D /* WebViewViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,7 +192,10 @@
 				0AE4D7012B92733100D4DDCE /* ImagesListCell.swift in Sources */,
 				0AC564D02B964D9E00107D99 /* ProfileViewController.swift in Sources */,
 				0AE4D6C92B8F62FF00D4DDCE /* AppDelegate.swift in Sources */,
+				0AFCE7F12BB6D96900956B4D /* AuthViewController.swift in Sources */,
+				0AFCE7EE2BB6048300956B4D /* Constants.swift in Sources */,
 				0AEC71EC2B977CF5000B9509 /* SingleImageViewController.swift in Sources */,
+				0AFCE7F42BB81F9C00956B4D /* WebViewViewController.swift in Sources */,
 				0AE4D6CB2B8F62FF00D4DDCE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
