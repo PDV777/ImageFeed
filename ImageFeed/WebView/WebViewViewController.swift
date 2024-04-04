@@ -10,7 +10,12 @@ import WebKit
 
 final class WebViewViewController: UIViewController {
     
-    weak var delegate:WebViewControllerDelegate?
+
+    @IBOutlet var webView: WKWebView!
+    @IBOutlet var progressView: UIProgressView!
+    
+    
+    weak var delegate:WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +24,6 @@ final class WebViewViewController: UIViewController {
         loadAuthView()
        
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         webView.addObserver(self,
@@ -27,14 +31,12 @@ final class WebViewViewController: UIViewController {
                             options: .new,
                          context: nil)
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         webView.removeObserver(self,
                                forKeyPath: #keyPath(WKWebView.estimatedProgress),
                                context: nil)
     }
-    
     override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?,
@@ -46,22 +48,9 @@ final class WebViewViewController: UIViewController {
         }
     }
     
-    private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
-    }
-    
-    @IBOutlet var webView: WKWebView!
-    
-    @IBOutlet var progressView: UIProgressView!
-    
-    
-    enum WebViewConstants {
-        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-    }
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string:
-        WebViewConstants.unsplashAuthorizeURLString) else {
+        Constants.unsplashAuthorizeURLString) else {
             print("error urlComponents")
             return
         }
@@ -81,7 +70,12 @@ final class WebViewViewController: UIViewController {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    }
 }
+
 extension WebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,

@@ -8,6 +8,7 @@
 import UIKit
 
 class AuthViewController:UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackButton()
@@ -20,7 +21,7 @@ class AuthViewController:UIViewController {
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
 }
-extension AuthViewController: WebViewControllerDelegate {
+extension AuthViewController: WebViewViewControllerDelegate {
     func webViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
 
     }
