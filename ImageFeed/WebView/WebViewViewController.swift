@@ -1,35 +1,25 @@
-//
-//  WebViewViewController.swift
-//  ImageFeed
-//
-//  Created by Dmitry on 30.03.2024.
-//
-
 import UIKit
 import WebKit
 
 final class WebViewViewController: UIViewController {
     
-
+    weak var delegate:WebViewViewControllerDelegate?
+    
     @IBOutlet var webView: WKWebView!
     @IBOutlet var progressView: UIProgressView!
-    
-    
-    weak var delegate:WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateProgress()
         webView.navigationDelegate = self
         loadAuthView()
-       
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         webView.addObserver(self,
                             forKeyPath: #keyPath(WKWebView.estimatedProgress),
                             options: .new,
-                         context: nil)
+                            context: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -50,23 +40,20 @@ final class WebViewViewController: UIViewController {
     
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string:
-        Constants.unsplashAuthorizeURLString) else {
+                                                    Constants.unsplashAuthorizeURLString) else {
             print("error urlComponents")
             return
         }
-        
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: Constants.accessScope)
         ]
-        
         guard let url = urlComponents.url else {
             print("error url")
             return
         }
-        
         let request = URLRequest(url: url)
         webView.load(request)
     }
@@ -77,6 +64,7 @@ final class WebViewViewController: UIViewController {
 }
 
 extension WebViewViewController: WKNavigationDelegate {
+    
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -87,6 +75,7 @@ extension WebViewViewController: WKNavigationDelegate {
             decisionHandler(.allow)
         }
     }
+    
     private func code(from navigationAction: WKNavigationAction) -> String?{
         if
             let url = navigationAction.request.url,
