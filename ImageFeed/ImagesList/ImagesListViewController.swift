@@ -1,13 +1,6 @@
-//
-//  ViewController.swift
-//  ImageFeed
-//
-//  Created by Dmitry on 28.02.2024.
-//
-
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
     //    MARK: - IBOutlets
     
@@ -33,15 +26,15 @@ class ImagesListViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageSequeIdentifier {
-                let viewController = segue.destination as! SingleImageViewController
-                let indexPath = sender as! IndexPath
+            let viewController = segue.destination as! SingleImageViewController
+            let indexPath = sender as! IndexPath
             let image = UIImage(named: photosName[indexPath.row])
             viewController.image = image
         } else {
             super.prepare(for: segue, sender: sender)
+        }
     }
 }
-                 }
 // MARK: - extensions ImagesListViewController
 
 extension ImagesListViewController:UITableViewDataSource {
@@ -49,6 +42,7 @@ extension ImagesListViewController:UITableViewDataSource {
         //1 обязательный метод определяет количество ячеек в секции таблицы
         return photosName.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //2 обязательный метод протокола должен возвращать ячейку
         let cell = tableView.dequeueReusableCell(withIdentifier:ImagesListCell.reuseIdentifier, for: indexPath)
@@ -60,6 +54,7 @@ extension ImagesListViewController:UITableViewDataSource {
     }
 }
 extension ImagesListViewController {
+    
     func configCell(for cell:ImagesListCell,with indexPath:IndexPath) {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
             return
@@ -72,10 +67,10 @@ extension ImagesListViewController {
     }
 }
 extension ImagesListViewController:UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //метод отвечает за тап
         performSegue(withIdentifier: showSingleImageSequeIdentifier, sender: indexPath) // открывает картинку в ячейке
-        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
@@ -88,9 +83,4 @@ extension ImagesListViewController:UITableViewDelegate {
         let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
         return cellHeight
     }
-    
 }
-
-
-
-

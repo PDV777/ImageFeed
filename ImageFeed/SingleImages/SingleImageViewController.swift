@@ -1,17 +1,11 @@
-//
-//  SingleImageViewController.swift
-//  ImageFeed
-//
-//  Created by Dmitry on 05.03.2024.
-//
-
 import UIKit
 
 final class SingleImageViewController: UIViewController {
+    
     var image: UIImage! {
         didSet {
-            guard isViewLoaded else { return } // 1
-            imageView.image = image // 2
+            guard isViewLoaded else { return }
+            imageView.image = image
             rescaleAndCenterImageInScrollView(image: image)
         }
     }
@@ -43,12 +37,6 @@ final class SingleImageViewController: UIViewController {
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
-}
-
-extension SingleImageViewController : UIScrollViewDelegate {
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        imageView
-    }
     
     @IBAction func didTapBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -59,5 +47,12 @@ extension SingleImageViewController : UIScrollViewDelegate {
             applicationActivities: nil
         )
         present(share, animated: true,completion: nil)
+    }
+}
+
+extension SingleImageViewController : UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        imageView
     }
 }
