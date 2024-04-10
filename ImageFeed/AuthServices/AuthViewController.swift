@@ -45,7 +45,9 @@ extension AuthViewController: WebViewViewControllerDelegate {
             case .failure(let error):
                 print(error)
                 break
-            }}}
+            }
+        }
+    }
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
         dismiss(animated: true)
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
     //    MARK: - IBOutlets
     
@@ -42,6 +42,7 @@ extension ImagesListViewController:UITableViewDataSource {
         //1 обязательный метод определяет количество ячеек в секции таблицы
         return photosName.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //2 обязательный метод протокола должен возвращать ячейку
         let cell = tableView.dequeueReusableCell(withIdentifier:ImagesListCell.reuseIdentifier, for: indexPath)
@@ -53,6 +54,7 @@ extension ImagesListViewController:UITableViewDataSource {
     }
 }
 extension ImagesListViewController {
+    
     func configCell(for cell:ImagesListCell,with indexPath:IndexPath) {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
             return

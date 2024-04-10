@@ -30,7 +30,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="vUJ-5J-zgx" kind="presentation" identifier="showAuth" modalPresentationStyle="fullScreen" id="pbu-wO-aBj"/>
+                        <segue destination="vUJ-5J-zgx" kind="presentation" identifier="ShowAuth" modalPresentationStyle="fullScreen" id="pbu-wO-aBj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa9-H4-CGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -1,17 +1,10 @@
-//
-//  OAuth2Service.swift
-//  ImageFeed
-//
-//  Created by Dmitry on 03.04.2024.
-//
-
 import UIKit
 
 final class OAuth2Service {
     static let shared = OAuth2Service()
     private init() {}
     
-    func urlRequestToken(code:String) -> URLRequest {
+    private func urlRequestToken(code:String) -> URLRequest {
         guard var components = URLComponents(string: Constants.authToken) //собираем наш url согл документации
         else { preconditionFailure("url error")}
         components.queryItems =
@@ -27,11 +20,11 @@ final class OAuth2Service {
             request.httpMethod = "POST" // меняем get запрос на  post
             return request
         }
+    
         func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
             completion(.success("")) // функция для запроса токена
             let request = urlRequestToken(code: code)
-           
-            let decTask = URLSession.shared.data(for: request) { result in
+            let task = URLSession.shared.data(for: request) { result in
                 switch result {
                 case .success(let data):
                     do {
@@ -47,7 +40,7 @@ final class OAuth2Service {
                     completion(.failure(error))
                 }
             }
-            decTask.resume()
+            task.resume()
         }
     
 }

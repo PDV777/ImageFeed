@@ -2,8 +2,7 @@ import UIKit
 
 final class SplashViewController: UIViewController{
     
-    private let showGalerySegueId = "showGallery"
-    private let showAuthSegueId = "showAuth"
+    private let showAuthSegueId = "ShowAuth"
     private let storage = OAuth2TokenStorage()
     private let oauth2Service = OAuth2Service.shared
     
