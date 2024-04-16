@@ -1,8 +1,19 @@
 import UIKit
 
+enum AuthServiceError {
+    case invalidRequest
+}
+
 final class OAuth2Service {
+    
     static let shared = OAuth2Service()
     private init() {}
+    
+    private let urlSession = URLSession.shared
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
+   
     
     private func urlRequestToken(code:String) -> URLRequest {
         guard var components = URLComponents(string: Constants.authToken) //собираем наш url согл документации
@@ -42,5 +53,4 @@ final class OAuth2Service {
             }
             task.resume()
         }
-    
 }

@@ -1,5 +1,5 @@
 import UIKit
-
+import ProgressHUD
 
 final class AuthViewController:UIViewController {
     
@@ -32,23 +32,30 @@ final class AuthViewController:UIViewController {
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
 }
+
 extension AuthViewController: WebViewViewControllerDelegate {
+    
+    func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
+        dismiss(animated: true)
+    }
     
     func webViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         navigationController?.popViewController(animated: true)
+        UIBlockingProgressHUD.show()
         oauth2Service.fetchOAuthToken(code) { [weak self] result in
             guard let self = self else { return }
+           
+            
             switch result {
             case .success(let accessToken):
                 self.oauth2TokenStorage.token = accessToken
                 self.delegate?.didAuthenticate(self)
+                ProgressHUD.dismiss()
             case .failure(let error):
                 print(error)
                 break
             }
         }
     }
-    func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
-        dismiss(animated: true)
-    }
+   
 }
