@@ -34,6 +34,10 @@ final class OAuth2Service {
     
         func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
             completion(.success("")) // функция для запроса токена
+            guard code != lastCode else {
+                return
+            }
+            lastCode = code
             let request = urlRequestToken(code: code)
             let task = URLSession.shared.data(for: request) { result in
                 switch result {

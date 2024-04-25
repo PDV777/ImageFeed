@@ -7,6 +7,7 @@ final class ProfileViewController: UIViewController {
     private let nameLabel = UILabel()
     private let loginName = UILabel()
     private let logoutButton = UIButton()
+    private let userProfile = ProfileService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ final class ProfileViewController: UIViewController {
     }
     private func name() {
         nameLabel.font = UIFont.boldSystemFont(ofSize: 23)
-        nameLabel.text = "Екатерина Новикова"
+        nameLabel.text = "\(userProfile.profile?.firstName)"
         nameLabel.textColor = .ypWhite
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
@@ -67,3 +68,4 @@ final class ProfileViewController: UIViewController {
             logoutButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor)])
     }
 }
+
