@@ -1,16 +1,5 @@
 import Foundation
-//Codable структура для декодирования ответа от Unsplash API
-struct ProfileResult: Codable {
-    
-    let userName: String
-    let firstName:String
-    let lastName:String?
-    let bio: String?
-    
-    var fullName: String {
-        return [firstName, lastName].compactMap{$0}.joined(separator: " ")
-    }
-}
+
 //Структура для использования в UI layer
 struct Profile {
     let userName:String
@@ -21,6 +10,18 @@ struct Profile {
 }
 
 final class ProfileService {
+    //Codable структура для декодирования ответа от Unsplash API
+    struct ProfileResult: Codable {
+        
+        let userName: String
+        let firstName:String
+        let lastName:String?
+        let bio: String?
+        
+        var fullName: String {
+            return [firstName, lastName].compactMap{$0}.joined(separator: " ")
+        }
+    }
     
     static let shared = ProfileService()
     private init() {}
@@ -38,7 +39,7 @@ final class ProfileService {
             fatalError("URL is incorrect!")
         }
         var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
+        request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }

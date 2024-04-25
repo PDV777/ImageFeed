@@ -37,24 +37,20 @@ final class OAuth2Service {
             guard code != lastCode else {
                 return
             }
+            task?.cancel()
             lastCode = code
+            
             let request = urlRequestToken(code: code)
-            let task = URLSession.shared.data(for: request) { result in
+            
+            let task = urlSession.objectTask(for: request){(result: Result <OAuthTokenResponseBody, Error>) in
                 switch result {
-                case .success(let data):
-                    do {
-                        let oauthToken = try JSONDecoder().decode(OAuthTokenResponseBody.self, from:data)
-                        guard let accessToken = oauthToken.accesToken else {
-                            fatalError("empty")
-                        }
-                        completion(.success(accessToken))
-                    } catch {
-                        completion(.failure(error))
-                    }
+                case .success(let token):
+                    completion(.success(token.accesToken))
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
+            self.task = task
             task.resume()
+                }
         }
-}

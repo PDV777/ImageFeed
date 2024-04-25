@@ -5,6 +5,7 @@ enum NetworkError: Error {
     case httpStatusCode(Int)
     case urlRequestError(Error)
     case urlSessionError
+    case decodingError(Error)
 }
 
 extension URLSession {
@@ -33,4 +34,25 @@ extension URLSession {
         })
         return task
     }
+    
+        func objectTask<T: Decodable>(
+            for request:URLRequest,
+            decoder: JSONDecoder = JSONDecoder(),
+            completion: @escaping (Result<T, Error>) -> Void
+        ) -> URLSessionTask {
+            let task = data(for: request) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let decodedObject = try decoder.decode(T.self, from:data)
+                        completion(.success(decodedObject))
+                    } catch {
+                        completion(.failure(NetworkError.decodingError(error)))
+                    }
+                case.failure(let error):
+                    completion(.failure(error))
+                }
+            }
+            return task
+        }
 }
