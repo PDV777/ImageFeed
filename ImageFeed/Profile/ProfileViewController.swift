@@ -17,6 +17,15 @@ final class ProfileViewController: UIViewController {
         login()
         description()
         logout()
+        if let profile = userProfile.profile {
+            updateProfileDetails(profile: profile)
+        }
+    }
+    
+    private func updateProfileDetails(profile: Profile) {
+        nameLabel.text = profile.name
+        loginName.text = profile.loginName
+        descriptionLabel.text = profile.bio
     }
     
     private func transAdd(){
@@ -38,7 +47,7 @@ final class ProfileViewController: UIViewController {
     }
     private func name() {
         nameLabel.font = UIFont.boldSystemFont(ofSize: 23)
-        nameLabel.text = "\(userProfile.profile?.firstName)"
+        nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = .ypWhite
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),

@@ -3,9 +3,8 @@ import Foundation
 //Структура для использования в UI layer
 struct Profile {
     let userName:String
-    let firstName:String
-    let loginName: String
-    let lastName: String?
+    let name:String
+    let loginName: String?
     let bio: String?
 }
 
@@ -27,9 +26,6 @@ final class ProfileService {
     private init() {}
     
     private(set) var profile: Profile?
-    
-   
-    
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     
@@ -43,36 +39,30 @@ final class ProfileService {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
-    func fetchProfile(token: String, completion: @escaping (Result<Profile,Error>) -> Void) {
-        let _: (Result<Profile, Error>) -> Void = { result in
-            DispatchQueue.main.async {
-                completion(result)
+    func fetchProfile(token: String, completion: @escaping (Result<ProfileResult,Error>) -> Void) {
+        assert(Thread.isMainThread)
+        if task != nil {
+            task?.cancel() //Отменить предыдущую задачу, если она существует
+            
+            let request = createProfileRequest(token: token)
+            
+            let task = urlSession.objectTask(for: request) {(result: Result<ProfileResult,Error>) in
+                switch result {
+                case .success(let profileResult):
+                    let profile = Profile (userName: profileResult.userName,
+                                           name: profileResult.fullName,
+                                           loginName: "@" + profileResult.userName,
+                                           bio: profileResult.bio
+                    )
+                    self.profile = profile
+                    completion(.success(profileResult))
+                case .failure(let error):
+                    print("error")
+                    completion(.failure(error))
+                }
             }
+            self.task = task
+            task.resume()
         }
-        task?.cancel() //Отменить предыдущую задачу, если она существует
-        let request = createProfileRequest(token: token)
-        task = urlSession.dataTask(with: request) { data, responce, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            guard let data = data else {
-                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was nil."])))
-                return
-            }
-            do {
-                let profileResult = try JSONDecoder().decode(ProfileResult.self, from: data)
-                let profile = Profile (userName: profileResult.userName,
-                                       firstName: profileResult.firstName,
-                                       loginName: "@" + profileResult.userName,
-                                       lastName: profileResult.lastName,
-                                       bio: profileResult.bio
-                )
-                completion(.success(profile))
-            } catch{
-                completion(.failure(error))
-            }
-        }
-        task?.resume()
     }
 }

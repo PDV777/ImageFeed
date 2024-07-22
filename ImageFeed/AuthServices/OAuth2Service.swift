@@ -10,7 +10,7 @@ final class OAuth2Service {
     private init() {}
     
     private let urlSession = URLSession.shared
-    private var task: URLSessionTask?
+    private var currentTask: URLSessionTask?
     private var lastCode: String?
     
    
@@ -33,24 +33,30 @@ final class OAuth2Service {
         }
     
         func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
+            assert(Thread.isMainThread)
             completion(.success("")) // функция для запроса токена
             guard code != lastCode else {
+                print("error")
                 return
             }
-            task?.cancel()
+            currentTask?.cancel()
             lastCode = code
             
             let request = urlRequestToken(code: code)
             
-            let task = urlSession.objectTask(for: request){(result: Result <OAuthTokenResponseBody, Error>) in
+            let task = urlSession.objectTask(for: request) 
+            { (result: Result <OAuthTokenResponseBody, Error>) in
                 switch result {
                 case .success(let token):
+                    
                     completion(.success(token.accesToken))
                 case .failure(let error):
                     completion(.failure(error))
                 }
+                self.currentTask = nil
+                self.lastCode = nil
             }
-            self.task = task
+            self.currentTask = task
             task.resume()
                 }
         }
